@@ -1,9 +1,7 @@
 <script context="module">
     export async function load({ fetch, params }) {
         const id = params.id;
-        const req = await fetch(
-            `https://jsonplaceholder.typicode.com/posts/${id}`
-        );
+        const req = await fetch(`/guides/${id}.json`);
         const guide = await req.json();
 
         if (req.ok) {
@@ -25,7 +23,7 @@
     export let guide;
 </script>
 
-<div class="guide">
+<div class="guide" on:click={() => console.log(guide)}>
     <h2>{guide.title}</h2>
     <p>{guide.body}</p>
 </div>
@@ -34,8 +32,14 @@
     .guide {
         display: flex;
         flex-direction: column;
-        padding: 1rem 3rem;
+        padding: 3rem;
         margin: 1rem;
         border: 1px solid hsla(266, 55%, 88%, 0.2);
+        width: 80%;
+    }
+
+    h2,
+    p {
+        margin: 1rem 0;
     }
 </style>

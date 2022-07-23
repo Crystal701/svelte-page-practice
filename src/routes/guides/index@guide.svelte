@@ -1,10 +1,9 @@
 <script context="module">
     export async function load({ fetch }) {
         try {
-            const req = await fetch(
-                "https://jsonplaceholder.typicode.com/posts"
-            );
+            const req = await fetch("/guides.json");
             const guides = await req.json();
+
             return {
                 props: {
                     guides,
